@@ -1,4 +1,4 @@
-import pytestx
+import pytest
 
 
 def test_validate_bpx():

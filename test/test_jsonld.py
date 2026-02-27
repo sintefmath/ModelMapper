@@ -51,7 +51,7 @@ class TestJSONLDStructureBPX:
         assert "@context" in jsonld_from_bpx
 
     def test_context_value(self, jsonld_from_bpx):
-        assert "w3id.org" in jsonld_from_bpx["@context"]
+        assert jsonld_from_bpx["@context"].startswith("https://w3id.org/")
 
     def test_has_graph(self, jsonld_from_bpx):
         assert "@graph" in jsonld_from_bpx

@@ -1,0 +1,117 @@
+{
+  "Geometry": {
+    "case": "1D",
+    "faceArea": 0.0001
+  },
+  "NegativeElectrode": {
+    "Coating": {
+      "thickness": 0.0,
+      "N": 10,
+      "bruggemanCoefficient": 1.5,
+      "electronicConductivity": 0.0,
+      "ActiveMaterial": {
+        "massFraction": 0.94,
+        "density": 2240,
+        "electronicConductivity": 100,
+        "Interface": {
+          "saturationConcentration": 0.0,
+          "volumetricSurfaceArea": 0.0,
+          "numberOfElectronsTransferred": 1,
+          "activationEnergyOfReaction": 0.0,
+          "reactionRateConstant": 0.0,
+          "guestStoichiometry100": 0.0,
+          "guestStoichiometry0": 0.0,
+          "chargeTransferCoefficient": 0.5,
+          "openCircuitPotential": {
+            "functionFormat": "string expression",
+            "argumentList": ["stoichiometry"],
+            "expression": ""
+          }
+        },
+        "diffusionModelType": "full",
+        "SolidDiffusion": {
+          "activationEnergyOfDiffusion": 0.0,
+          "referenceDiffusionCoefficient": 0.0,
+          "particleRadius": 0.0,
+          "N": 10
+        }
+      }
+    }
+  },
+  "PositiveElectrode": {
+    "Coating": {
+      "thickness": 0.0,
+      "N": 10,
+      "bruggemanCoefficient": 1.5,
+      "electronicConductivity": 0.0,
+      "ActiveMaterial": {
+        "massFraction": 0.95,
+        "density": 4650,
+        "electronicConductivity": 100,
+        "Interface": {
+          "saturationConcentration": 0.0,
+          "volumetricSurfaceArea": 0.0,
+          "numberOfElectronsTransferred": 1,
+          "activationEnergyOfReaction": 0.0,
+          "reactionRateConstant": 0.0,
+          "guestStoichiometry100": 0.0,
+          "guestStoichiometry0": 0.0,
+          "chargeTransferCoefficient": 0.5,
+          "openCircuitPotential": {
+            "functionFormat": "string expression",
+            "argumentList": ["stoichiometry"],
+            "expression": ""
+          }
+        },
+        "diffusionModelType": "full",
+        "SolidDiffusion": {
+          "activationEnergyOfDiffusion": 0.0,
+          "referenceDiffusionCoefficient": 0.0,
+          "particleRadius": 0.0,
+          "N": 10
+        }
+      }
+    }
+  },
+  "Separator": {
+    "thickness": 0.0,
+    "N": 10,
+    "porosity": 0.0,
+    "bruggemanCoefficient": 1.5
+  },
+  "Electrolyte": {
+    "ionicConductivity": {
+      "functionFormat": "string expression",
+      "argumentList": ["concentration", "temperature"],
+      "expression": ""
+    },
+    "diffusionCoefficient": {
+      "functionFormat": "string expression",
+      "argumentList": ["concentration", "temperature"],
+      "expression": ""
+    },
+    "species": {
+      "chargeNumber": 1,
+      "transferenceNumber": 0.0,
+      "nominalConcentration": 0.0
+    },
+    "bruggemanCoefficient": 1.5
+  },
+  "Control": {
+    "controlPolicy": "cc_discharge",
+    "DRate": 1,
+    "lowerCutoffVoltage": 0.0,
+    "upperCutoffVoltage": 0.0
+  },
+  "ThermalModel": {
+    "externalTemperature": 298.15
+  },
+  "initT": 298.15,
+  "SOC": 0.99,
+  "TimeStepping": {
+    "totalTime": 3600,
+    "numberOfTimeSteps": 40,
+    "useRampup": true,
+    "numberOfRampupSteps": 5
+  }
+}

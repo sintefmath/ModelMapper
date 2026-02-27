@@ -16,13 +16,56 @@ class ParameterMapper:
         for input_key, output_key in self.mappings.items():
             value = self.get_value_from_path(input_data, input_key)
             if value is not None:
-                if isinstance(value, str):
-                    value = self.replace_variables(value)
+                value = self.convert_value(value, input_key, output_key)
                 self.set_value_from_path(output_data, output_key, value)
                 self.remove_default_from_used(output_key)
-        self.set_bpx_header(output_data)
+        if self.output_type == "bpx":
+            self.set_bpx_header(output_data)
         self.remove_high_level_defaults()
         return output_data
+
+    def convert_value(self, value, input_key, output_key):
+        """Convert a value between formats, handling expressions and functions."""
+        # Handle string expressions (BPX/cidemod → battmo)
+        if isinstance(value, str) and self.output_type in ("battmo.m", "battmo.jl"):
+            value = self.replace_variables(value)
+            # Check if target is a function field (OCP, conductivity, diffusivity)
+            return self._string_expr_to_battmo_func(value, output_key)
+        # Handle battmo function objects → BPX string expressions
+        if isinstance(value, dict) and self.output_type == "bpx":
+            return self._battmo_func_to_string_expr(value)
+        # Handle string variable replacement for BPX output
+        if isinstance(value, str) and self.output_type == "bpx":
+            value = self.replace_variables(value)
+        return value
+
+    def _string_expr_to_battmo_func(self, expr, output_key):
+        """Convert a BPX string expression to a BattMo function object."""
+        output_path = list(output_key)
+        # Determine if this is a function-valued parameter based on output path
+        func_params = {
+            "openCircuitPotential": (["stoichiometry"],),
+            "ionicConductivity": (["concentration", "temperature"],),
+            "diffusionCoefficient": (["concentration", "temperature"],),
+        }
+        for func_name, (arg_list,) in func_params.items():
+            if func_name in output_path:
+                return {
+                    "functionFormat": "string expression",
+                    "argumentList": arg_list,
+                    "expression": expr,
+                }
+        return expr
+
+    def _battmo_func_to_string_expr(self, func_obj):
+        """Convert a BattMo function object to a string expression."""
+        if isinstance(func_obj, dict):
+            if "expression" in func_obj:
+                return func_obj["expression"]
+            if "functionName" in func_obj or "functionname" in func_obj:
+                name = func_obj.get("functionName", func_obj.get("functionname", ""))
+                return f"# Named function: {name} (requires manual conversion)"
+        return str(func_obj)
 
     def replace_variables(self, value):
         if isinstance(value, str):

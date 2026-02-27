@@ -36,6 +36,9 @@ class OntologyParser:
             "battmo.m": URIRef(
                 "https://w3id.org/emmo/domain/battery-model-lithium-ion#bmli_e5e86474_8623_48ea_a1cf_502bdb10aa14"
             ),
+            "battmo.jl": URIRef(
+                "https://w3id.org/emmo/domain/battery-model-lithium-ion#bmli_e5e86474_8623_48ea_a1cf_502bdb10aa14"
+            ),
         }
 
     def parse_key(self, key):

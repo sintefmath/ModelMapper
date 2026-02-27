@@ -44,6 +44,12 @@ def run(
             json.dumps({str(k): str(v) for k, v in mappings.items()}, indent=4),
         )
 
+        # Select the correct template based on output type
+        if output_type in ("battmo.m", "battmo.jl"):
+            template_ref = template_ref.replace(
+                "bpx_template.json", "battmo_template.json"
+            )
+
         # Load the template JSON file
         template_data = bmm.JSONLoader.load(template_ref)
         template_data.pop(
@@ -55,7 +61,6 @@ def run(
             mappings, template_data, input_file, output_type, input_type
         )
         output_data = parameter_mapper.map_parameters(input_data)
-        # defaults_used_data = list(parameter_mapper.defaults_used)
         bmm.JSONWriter().write(output_data, output_file)
 
 

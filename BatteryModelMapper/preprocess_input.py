@@ -7,7 +7,7 @@ class PreprocessInput:
         if self.input_type == "cidemod":
             return self._process_cidemod()
         elif self.input_type in ("battmo.m", "battmo.jl"):
-            return self._process_battmo_m()
+            return self._process_battmo()
         elif self.input_type == "bpx":
             return self.input_data
         else:
@@ -20,16 +20,20 @@ class PreprocessInput:
                 self.input_data[key] = value * 1e6
         return self.input_data
 
-    def _process_battmo_m(self):
-        # Save NE and PE porosities computed from volume fractions
+    def _process_battmo(self):
+        """Preprocess BattMo input data (both battmo.m and battmo.jl).
+        Computes porosity from volumeFraction if volumeFraction is present.
+        """
         eldes = ["NegativeElectrode", "PositiveElectrode"]
         for elde in eldes:
             elde_data = self.input_data.get(elde)
+            if elde_data is None:
+                continue
             co_data = elde_data.get("Coating")
+            if co_data is None:
+                continue
             vf = co_data.get("volumeFraction")
-            if vf is None:
-                raise ValueError(f"Missing volumeFraction data for {elde}")
-            else:
+            if vf is not None:
                 porosity = 1.0 - vf
                 self.input_data[elde]["Coating"]["porosity"] = porosity
 

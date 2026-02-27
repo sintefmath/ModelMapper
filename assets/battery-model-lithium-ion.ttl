@@ -470,6 +470,15 @@ emmo:hasMeasurementUnit emmo:volt ;
     :bmli_e5e86474_8623_48ea_a1cf_502bdb10aa14 "['Control','lowerCutoffVoltage']"@en .
 
 
+###  Upper voltage cut-off (workaround: added locally, not in upstream EMMO)
+:modellib_upper_cutoff_voltage rdf:type owl:Class ;
+    skos:prefLabel "UpperVoltageCutOff"@en ;
+    emmo:hasMeasurementUnit emmo:volt ;
+    :bmli_0a5b99ee_995b_4899_a79b_925a4086da37 "['Parameterisation','Cell','Upper voltage cut-off [V]']"@en ;
+    :bmli_1b718841_5d72_4071_bb71_fc4a754f5e30 "['simulation','triggers','voltage','upper']"@en ;
+    :bmli_e5e86474_8623_48ea_a1cf_502bdb10aa14 "['Control','upperCutoffVoltage']"@en .
+
+
 electrochemistry:electrochemistry_9c9b80a4_a00b_4b91_8e17_3a7831f2bf2f :bmli_1b718841_5d72_4071_bb71_fc4a754f5e30 "['simulation','initial_state','initial_temperature','value']"@en ;
 emmo:hasMeasurementUnit emmo:kelvin ;
     :bmli_0a5b99ee_995b_4899_a79b_925a4086da37 "['Parameterisation','Cell','Initial temperature [K]']"@en ;

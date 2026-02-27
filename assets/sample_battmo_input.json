@@ -1,0 +1,119 @@
+{
+    "Geometry": {
+        "case": "1D",
+        "faceArea": 0.0001
+    },
+    "NegativeElectrode": {
+        "Coating": {
+            "thickness": 5.62e-05,
+            "N": 10,
+            "bruggemanCoefficient": 1.5,
+            "electronicConductivity": 0.222,
+            "porosity": 0.253991,
+            "ActiveMaterial": {
+                "massFraction": 0.94,
+                "density": 2240,
+                "electronicConductivity": 100,
+                "Interface": {
+                    "saturationConcentration": 29730,
+                    "volumetricSurfaceArea": 499522,
+                    "numberOfElectronsTransferred": 1,
+                    "activationEnergyOfReaction": 55000,
+                    "reactionRateConstant": 5.199e-06,
+                    "guestStoichiometry100": 0.75668,
+                    "guestStoichiometry0": 0.005504,
+                    "chargeTransferCoefficient": 0.5,
+                    "openCircuitPotential": {
+                        "functionFormat": "string expression",
+                        "argumentList": ["stoichiometry"],
+                        "expression": "9.47057878e-01 * exp(-1.59418743e+02 * x) - 3.50928033e+04 + 1.64230269e-01 * tanh(-4.55509094e+01 * (x - 3.24116012e-02)) + 3.69968491e-02 * tanh(-1.96718868e+01 * (x - 1.68334476e-01)) + 1.91517003e+04 * tanh(3.19648312e+00 * (x - 1.85139824e+00)) + 5.42448511e+04 * tanh(-3.19009848e+00 * (x - 2.01660395e+00))"
+                    }
+                },
+                "diffusionModelType": "full",
+                "SolidDiffusion": {
+                    "activationEnergyOfDiffusion": 30000,
+                    "referenceDiffusionCoefficient": 2.728e-14,
+                    "particleRadius": 4.12e-06,
+                    "N": 10
+                }
+            }
+        }
+    },
+    "PositiveElectrode": {
+        "Coating": {
+            "thickness": 5.23e-05,
+            "N": 10,
+            "bruggemanCoefficient": 1.5,
+            "electronicConductivity": 0.789,
+            "porosity": 0.277493,
+            "ActiveMaterial": {
+                "massFraction": 0.95,
+                "density": 4650,
+                "electronicConductivity": 100,
+                "Interface": {
+                    "saturationConcentration": 46200,
+                    "volumetricSurfaceArea": 432072,
+                    "numberOfElectronsTransferred": 1,
+                    "activationEnergyOfReaction": 35000,
+                    "reactionRateConstant": 2.305e-05,
+                    "guestStoichiometry100": 0.9621,
+                    "guestStoichiometry0": 0.42424,
+                    "chargeTransferCoefficient": 0.5,
+                    "openCircuitPotential": {
+                        "functionFormat": "string expression",
+                        "argumentList": ["stoichiometry"],
+                        "expression": "-3.04420906 * x + 10.04892207 - 0.65637536 * tanh(-4.02134095 * (x - 0.80063948)) + 4.24678547 * tanh(12.17805062 * (x - 7.57659337)) - 0.3757068 * tanh(59.33067782 * (x - 0.99784492))"
+                    }
+                },
+                "diffusionModelType": "full",
+                "SolidDiffusion": {
+                    "activationEnergyOfDiffusion": 15000,
+                    "referenceDiffusionCoefficient": 3.2e-14,
+                    "particleRadius": 4.6e-06,
+                    "N": 10
+                }
+            }
+        }
+    },
+    "Separator": {
+        "thickness": 2e-05,
+        "N": 10,
+        "porosity": 0.47,
+        "bruggemanCoefficient": 1.5
+    },
+    "Electrolyte": {
+        "ionicConductivity": {
+            "functionFormat": "string expression",
+            "argumentList": ["concentration", "temperature"],
+            "expression": "0.1297 * (x / 1000) ** 3 - 2.51 * (x / 1000) ** 1.5 + 3.329 * (x / 1000)"
+        },
+        "diffusionCoefficient": {
+            "functionFormat": "string expression",
+            "argumentList": ["concentration", "temperature"],
+            "expression": "8.794e-11 * (x / 1000) ** 2 - 3.972e-10 * (x / 1000) + 4.862e-10"
+        },
+        "species": {
+            "chargeNumber": 1,
+            "transferenceNumber": 0.2594,
+            "nominalConcentration": 1000
+        },
+        "bruggemanCoefficient": 1.5
+    },
+    "Control": {
+        "controlPolicy": "cc_discharge",
+        "DRate": 1,
+        "lowerCutoffVoltage": 2.7,
+        "upperCutoffVoltage": 4.2
+    },
+    "ThermalModel": {
+        "externalTemperature": 298.15
+    },
+    "initT": 298.15,
+    "SOC": 0.99,
+    "TimeStepping": {
+        "totalTime": 3600,
+        "numberOfTimeSteps": 40,
+        "useRampup": true,
+        "numberOfRampupSteps": 5
+    }
+}

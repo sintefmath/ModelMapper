@@ -6,8 +6,10 @@ class PreprocessInput:
     def process(self):
         if self.input_type == "cidemod":
             return self._process_cidemod()
-        elif self.input_type == "battmo.m":
+        elif self.input_type in ("battmo.m", "battmo.jl"):
             return self._process_battmo_m()
+        elif self.input_type == "bpx":
+            return self.input_data
         else:
             raise ValueError(f"Unsupported input type: {self.input_type}")
 

@@ -385,8 +385,8 @@
     rdfs:subClassOf electrochemistry:electrochemistry_05cf26ef_782a_4f66_a196_7004dd973f8e ;
     skos:prefLabel "BatteryCellSurfaceArea"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "the external surface area of a battery cell"@en ;
-    emmo::hasMeasurementUnit emmo:meterPower2 ;
-    :bmli_0a5b99ee_995b_4899_a79b_925a4086da37 "['Parameterisation','Parameterisation','Cell','External surface area [m2]']"@en ;
+    emmo:hasMeasurementUnit emmo:meterPower2 ;
+    :bmli_0a5b99ee_995b_4899_a79b_925a4086da37 "['Parameterisation','Cell','External surface area [m2]']"@en ;
     :bmli_1b718841_5d72_4071_bb71_fc4a754f5e30 "['properties','external_surface_area','value']"@en .
 
 

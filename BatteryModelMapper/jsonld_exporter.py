@@ -111,19 +111,13 @@ def _find_any_predicate_by_localname(g, candidates: Set[str]) -> Optional[URIRef
 
 
 def _get_unit_for_subject(g, subject: URIRef) -> Optional[str]:
-    # Get the unit for a given subject if defined
+    """Get the unit for a given subject if defined in the ontology."""
     unit_predicates = {"hasMeasurementUnit", "hasUnit", "unit"}
     unit_pred = _find_any_predicate_by_localname(g, unit_predicates)
     if unit_pred:
         for unit in g.objects(subject, unit_pred):
             return _curie(g, unit)
-    else:
-        # Assume SI units based on common property names
-        # breakpoint()
-
-        # Get skos preflabel if exists
-        label = _get_skos_prefLabel(g, subject)
-        breakpoint()
+    return None
 
 
 def export_jsonld(

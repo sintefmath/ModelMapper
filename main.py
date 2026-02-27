@@ -3,24 +3,6 @@ import argparse
 import BatteryModelMapper as bmm
 
 
-def fix_battmo_porosity(label, input_path, input_data):
-    if (
-        label == "PositiveElectrodeCoatingPorosity"
-        or label == "NegativeElectrodeCoatingPorosity"
-    ):
-        # Get the volume fraction of active material in the positive electrode coating
-        vf_path = list(input_path)
-        vf_path[-1] = "volumeFraction"
-        vf_value = ParameterMapper.get_value_from_path(input_data, vf_path)
-        if vf_value is None:
-            ValueError(
-                f"Could not find volumeFraction for porosity calculcation for {label}"
-            )
-        else:
-            porosity = 1.0 - vf_value
-            return porosity
-
-
 def run(
     input_file,
     input_type,
@@ -81,7 +63,7 @@ def input_parser():
 
     parser = argparse.ArgumentParser(description="Battery Model Mapper CLI")
 
-    types = ["bpx", "cidemod", "battmo.m", "jsonld"]
+    types = ["bpx", "cidemod", "battmo.m", "battmo.jl", "jsonld"]
     input_types = list(set(types) - {"jsonld"})
     output_types = types
 

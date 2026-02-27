@@ -1,6 +1,9 @@
 converted_battery_parameters.json
 test.py
 test_pybamm.py
+missing_values.json
+defaults_used.json
+output.jsonld
 
 # Ignore the virtual environment folder
 venv/

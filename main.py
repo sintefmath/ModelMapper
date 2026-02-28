@@ -72,40 +72,40 @@ def input_parser():
     input_types = list(set(types) - {"jsonld"})
     output_types = types
 
-    parser.add_argument("-input-file", required=True, help="Input filename")
+    parser.add_argument("--input-file", required=True, help="Input filename")
     parser.add_argument(
-        "-input-type",
+        "--input-type",
         required=True,
         help=f"Input type string (must be one of {input_types})",
     )
     parser.add_argument(
-        "-output-file", required=False, default="output.jsonld", help="Output filename"
+        "--output-file", required=False, default="output.jsonld", help="Output filename"
     )
     parser.add_argument(
-        "-output-type",
+        "--output-type",
         required=False,
         default="jsonld",
         help=f"Output type string (must be one of {output_types})",
     )
     parser.add_argument(
-        "-cell-id",
+        "--cell-id",
         required=False,
         default="Cell ID",
         help="Cell ID (eg BattMo) for JSON-LD output",
     )
     parser.add_argument(
-        "-cell-type",
+        "--cell-type",
         required=False,
         default="Pouch",
         help="Cell Type (eg Pouch) for JSON-LD output",
     )
     parser.add_argument(
-        "-ontology-ref",
+        "--ontology-ref",
         default="assets/battery-model-lithium-ion.ttl",
         help="Ontology file path",
     )
     parser.add_argument(
-        "-template-ref", default="assets/bpx_template.json", help="Template file path"
+        "--template-ref", default="assets/bpx_template.json", help="Template file path"
     )
     return parser, input_types, output_types
 
